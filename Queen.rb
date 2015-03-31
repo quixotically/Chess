@@ -11,6 +11,6 @@ class Queen < SlidingPiece
   end
 end
 
-q = Queen.new([0,0], "board")
-
-p q.moves
+# q = Queen.new([0,0], "board")
+#
+# p q.moves
