@@ -1,7 +1,5 @@
 require_relative 'Sliding_Piece'
 
-
-
 class Queen < SlidingPiece
 
   def initialize

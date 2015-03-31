@@ -1,9 +1,7 @@
 require_relative 'Piece'
 
 class SlidingPiece < Piece
-  DIAGONAL_DELTAS   = [ [1,1], [1,-1], [-1,-1], [-1, 1] ]
-  HORIZONTAL_DELTAS = [ [1,0], [-1, 0] ]
-  VERTICAL_DELTAS   = [ [0,1], [0, -1] ]
+
 
   def initialize
 
