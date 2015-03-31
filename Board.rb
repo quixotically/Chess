@@ -21,10 +21,6 @@ class Board
 
 
   def display_grid
-
-
-
-
     grid.each do |row|
       p row
     end
