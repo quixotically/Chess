@@ -90,5 +90,13 @@ end
 
 
 board = Board.populated_board
+queen = Queen.new([4,4], :white, board)
+rook = Rook.new([4,2], :black, board)
+
+
+p rook.moves
+
+
+#p queen.moves
 
 board.display_grid
