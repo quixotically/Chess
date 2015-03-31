@@ -90,12 +90,16 @@ end
 
 
 board = Board.populated_board
-knight = Knight.new([7,1], :white, board)
-rook = Rook.new([4,2], :black, board)
+pawn = Pawn.new([1,1], :black, board)
+pawn2 = Pawn.new([2,2], :white, board)
+pawn3 = Pawn.new([2,0], :black, board)
+pawn3.move
+pawn4 = Pawn.new([4,1], :black, board)
 
-
-p knight.moves
-
+p pawn.moves
+p pawn2.moves
+p pawn3.moves
+p pawn4.moves
 
 #p queen.moves
 
