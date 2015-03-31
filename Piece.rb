@@ -2,7 +2,7 @@ class Piece
   DIAGONAL_DELTAS   = [ [1,1], [1,-1], [-1,-1], [-1, 1] ]
   HORIZONTAL_DELTAS = [ [1,0], [-1, 0] ]
   VERTICAL_DELTAS   = [ [0,1], [0, -1] ]
-  
+
   attr_accessor :pos, :board
 
   def initialize(pos, board)
@@ -10,7 +10,8 @@ class Piece
     @board = board
   end
 
-  def moves
+
+  def moves(pos)
 
   end
 

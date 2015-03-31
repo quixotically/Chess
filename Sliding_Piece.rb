@@ -3,9 +3,6 @@ require_relative 'Piece'
 class SlidingPiece < Piece
 
 
-  def initialize
-
-  end
   # return an array of places a Piece can move to
   def moves
 
