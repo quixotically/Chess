@@ -1,14 +1,10 @@
 require_relative 'Stepping_Piece'
 
 class Knight < SteppingPiece
-
-  def moves
-    super
-  end
-
   def move_dirs
     KNIGHT_DELTAS
   end
+  
 end
 
 

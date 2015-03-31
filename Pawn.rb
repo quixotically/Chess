@@ -27,16 +27,13 @@ class Pawn < Piece
       temp_move = [pos[0] + dx, pos[1] + dy]
 
       if inside_board?(temp_move)
-        if !board[temp_move].nil?
-          if board[temp_move].color == self.color
-            next
-          else
-            moves << temp_move unless dy == 0 ### if dy != 0 then piece is moving diagonally
-            next
-          end
+        if occupied?(temp_move)
+          next if same_color?(board[temp_move])
+
+          moves << temp_move unless dy == 0 ### if dy != 0 then piece is moving diagonally
+          next
         end
-      next unless dy == 0 ### if dy not 0 then the move is diagonal and illegal
-      moves << temp_move
+        moves << temp_move if dy == 0 ### if dy not 0 then the move is diagonal and illegal
       end
     end
 

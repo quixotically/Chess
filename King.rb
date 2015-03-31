@@ -8,7 +8,7 @@ class King < SteppingPiece
 end
 
 
-# 
+#
 # k = King.new([3,3], "board")
 #
 # p k.moves

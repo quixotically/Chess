@@ -27,6 +27,14 @@ class Piece
   def move_dirs
   end
 
+  def occupied?(pos)
+    !board[pos].nil?
+  end
+
+  def same_color?(other)
+    self.color == other.color
+  end
+
   def inside_board?(pos)
     pos.all? { |coord| coord.between?(0, 7) }
   end

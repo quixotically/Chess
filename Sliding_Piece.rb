@@ -12,9 +12,9 @@ class SlidingPiece < Piece
         temp_move = [pos[0] + (dx * multiplier), pos[1] + (dy * multiplier)]
 
         if inside_board?(temp_move)
-          if !board[temp_move].nil?
+          if occupied?(temp_move)
             blocked[idx] = true
-            next if board[temp_move].color == self.color
+            next if same_color?(board[temp_move])
           end
 
           moves << temp_move

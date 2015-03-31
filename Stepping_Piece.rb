@@ -8,8 +8,8 @@ class SteppingPiece < Piece
       temp_move = [pos[0] + dx, pos[1] + dy]
 
       if inside_board?(temp_move)
-        if !board[temp_move].nil?
-          next if board[temp_move].color == self.color
+        if occupied?
+          next if same_color?(board[temp_move])
         end
 
         moves << temp_move
@@ -18,4 +18,5 @@ class SteppingPiece < Piece
 
     moves
   end
+
 end

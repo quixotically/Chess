@@ -2,10 +2,6 @@ require_relative "Sliding_Piece"
 
 
 class Bishop < SlidingPiece
-  def moves
-    super
-  end
-
   def move_dirs
     DIAGONAL_DELTAS
   end
