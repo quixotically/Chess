@@ -11,10 +11,11 @@ class Board
   end
 
   def [](pos)
-
+    row, col = pos
+    grid[row][col]
   end
 
-  def []=(pos)
-
+  def []=(pos1, pos2)
+    grid[pos1] = grid[pos2]
   end
 end

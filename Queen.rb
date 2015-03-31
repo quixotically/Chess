@@ -5,6 +5,9 @@ class Queen < SlidingPiece
   def initialize
   end
 
+  def moves
+    
+  end
 
   def move_dirs
     directions = DIAGONAL_DELTAS + HORIZONTAL_DELTAS + VERTICAL_DELTAS
