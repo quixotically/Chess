@@ -4,6 +4,7 @@ class Queen < SlidingPiece
 
   def moves
     super
+
   end
 
   def move_dirs

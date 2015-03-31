@@ -90,11 +90,11 @@ end
 
 
 board = Board.populated_board
-queen = Queen.new([4,4], :white, board)
+knight = Knight.new([7,1], :white, board)
 rook = Rook.new([4,2], :black, board)
 
 
-p rook.moves
+p knight.moves
 
 
 #p queen.moves
