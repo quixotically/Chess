@@ -12,19 +12,20 @@ class Piece
                         [-1,2],
                         [-1,-2],
                       ]
-                      
-  attr_accessor :pos, :board
 
-  def initialize(pos, board)
+  attr_accessor :pos, :color, :board
+
+  def initialize(pos, color, board)
     @pos = pos
+    @color = color
     @board = board
   end
 
-
-  def moves(pos)
-
+  def moves
   end
 
+  def move_dirs
+  end
 
   def inside_board?(pos)
     pos.all? { |coord| coord.between?(0, 7) }
