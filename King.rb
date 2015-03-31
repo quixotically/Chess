@@ -1,6 +1,7 @@
-require_relative 'Piece'
+require_relative "Stepping_Piece"
 
-class SteppingPiece < Piece
+
+class King < SteppingPiece
 
   def moves
     moves = []
@@ -13,5 +14,13 @@ class SteppingPiece < Piece
 
 
   def move_dirs
+    DIAGONAL_DELTAS + HORIZONTAL_DELTAS + VERTICAL_DELTAS
   end
+
 end
+
+
+
+k = King.new([3,3], "board")
+
+p k.moves
