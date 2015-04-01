@@ -1,4 +1,8 @@
+# encoding: utf-8
+
 require_relative 'Piece'
+
+
 
 class Pawn < Piece
   PAWN_DELTAS = {
@@ -6,11 +10,15 @@ class Pawn < Piece
     first_white: [[-2,0], [-1,0], [-1, 1], [-1, -1]],
     black: [[1, 0], [1, -1], [1, 1]],
     white: [[-1,0], [-1, 1], [-1, -1]]
+    # white_attack: [[-1, 1], [-1, -1]]
+    # black_attack:  [[1, -1], [1, 1]]
   }
 
   def initialize(pos, color, board)
     super(pos, color, board)
     @has_moved = false
+    @symbol = '♟' if color == :black
+    @symbol = '♙' if color == :white
   end
 
   def has_moved?
@@ -39,7 +47,6 @@ class Pawn < Piece
 
     moves
   end
-
 
   def move_dirs
     if color == :white

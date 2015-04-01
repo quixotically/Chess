@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Piece
   DIAGONAL_DELTAS   = [ [1,1], [1,-1], [-1,-1], [-1, 1] ]
   HORIZONTAL_DELTAS = [ [1,0], [-1, 0] ]
@@ -13,7 +15,7 @@ class Piece
                         [-1,-2],
                       ]
 
-  attr_accessor :pos, :color, :board
+  attr_accessor :pos, :color, :board, :symbol
 
   def initialize(pos, color, board)
     @pos = pos

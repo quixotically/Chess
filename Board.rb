@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require_relative 'Piece'
 require_relative 'Sliding_Piece'
 require_relative 'Stepping_Piece'
@@ -7,6 +9,7 @@ require_relative 'Bishop'
 require_relative 'Knight'
 require_relative 'Rook'
 require_relative 'Pawn'
+require 'colorize'
 
 class Board
   attr_accessor :grid
@@ -77,12 +80,12 @@ class Board
       temp_row = []
       row.each do |space|
         if space.nil?
-          temp_row << '----'
+          temp_row << '-'
         else
-          temp_row << space.class
+          temp_row << space.symbol
         end
       end
-      p temp_row.join(' ')
+      puts temp_row.join(' ')
     end
   end
 end
@@ -101,6 +104,5 @@ p pawn2.moves
 p pawn3.moves
 p pawn4.moves
 
-#p queen.moves
 
 board.display_grid
