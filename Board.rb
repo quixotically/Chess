@@ -10,6 +10,7 @@ require_relative 'Knight'
 require_relative 'Rook'
 require_relative 'Pawn'
 require 'colorize'
+require 'byebug'
 
 class Board
   attr_accessor :grid
@@ -70,12 +71,57 @@ class Board
     grid[row][col]
   end
 
-  def []=(pos1, pos2)
-    grid[pos1] = grid[pos2]
+  def []=(pos, piece)
+    row, col = pos
+    grid[row][col] = piece
   end
 
-  def display_grid
+  def move(start_pos, end_pos)
+    piece = self[start_pos]
+    #byebug
 
+    raise InvalidMoveError.new if piece.nil? || !piece.moves.include?(end_pos)
+    piece.move(end_pos)
+
+    self[start_pos] = nil
+    self[end_pos] = piece
+  end
+
+  def find_king(color)
+    grid.each_with_index do |row, row_idx|
+      row.each_with_index do |piece, col_idx|
+       if piece.class == King && piece.color == color
+          return [row_idx, col_idx]
+        end
+      end
+    end
+  end
+
+
+
+
+  def in_check?(color)
+    king_pos = find_king(color)
+    enemy_moves(color).include?(king_pos)
+  end
+
+
+  def enemy_moves(color)
+    enemy_moves = []
+    grid.each_with_index do |row, row_idx|
+      row.each_with_index do |piece, col_idx|
+        next if piece.nil? || piece.color == color
+        enemy_moves.concat(piece.moves)
+      end
+    end
+    enemy_moves
+  end
+
+
+
+
+  def display_grid
+    puts
     grid.each do |row|
       temp_row = []
       row.each do |space|
@@ -90,19 +136,22 @@ class Board
   end
 end
 
+class InvalidMoveError < StandardError
 
+end
 
 board = Board.populated_board
-pawn = Pawn.new([1,1], :black, board)
-pawn2 = Pawn.new([2,2], :white, board)
-pawn3 = Pawn.new([2,0], :black, board)
-pawn3.move
-pawn4 = Pawn.new([4,1], :black, board)
 
-p pawn.moves
-p pawn2.moves
-p pawn3.moves
-p pawn4.moves
+board.display_grid
 
+board.move([6,5],[5,5])
+board.display_grid
+board.move([1,4],[3,4])
+board.display_grid
+board.move([6,6], [4,6])
+board.display_grid
+puts board.in_check?(:white)
+board.move([0,3], [4,7])
+puts board.in_check?(:white)
 
 board.display_grid

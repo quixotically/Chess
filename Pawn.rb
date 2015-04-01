@@ -25,7 +25,8 @@ class Pawn < Piece
     @has_moved
   end
 
-  def move
+  def move(new_pos)
+    @pos = new_pos
     @has_moved = true
   end
 

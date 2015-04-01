@@ -23,10 +23,19 @@ class Piece
     @board = board
   end
 
+  def inspect
+    @symbol.inspect
+
+  end
+
   def moves
   end
 
   def move_dirs
+  end
+
+  def move(new_pos)
+    @pos = new_pos
   end
 
   def occupied?(pos)

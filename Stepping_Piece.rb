@@ -10,7 +10,7 @@ class SteppingPiece < Piece
       temp_move = [pos[0] + dx, pos[1] + dy]
 
       if inside_board?(temp_move)
-        if occupied?
+        if occupied?(temp_move)
           next if same_color?(board[temp_move])
         end
 
