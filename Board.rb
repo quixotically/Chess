@@ -94,17 +94,6 @@ class Board
 
   end
 
-
-  # def move!(start_pos, end_pos)
-  #   piece = self[start_pos]
-  #
-  #   #raise MoveIntoCheckError.new if piece.move_into_check?
-  #
-  #   piece.move(end_pos)
-  #   self[start_pos] = nil
-  #   self[end_pos] = piece
-  # end
-
   def find_king(color)
     grid.each_with_index do |row, row_idx|
       row.each_with_index do |piece, col_idx|
@@ -129,6 +118,24 @@ class Board
       end
     end
     enemy_moves
+  end
+
+
+  def checkmate?(color)
+    valid_moves = []
+
+    grid.each_with_index do |row, row_idx|
+      row.each_with_index do |piece, col_idx|
+        next if piece.nil? || piece.color != color
+
+        possible_moves = piece.moves
+        possible_moves.each do |potential|
+          valid_moves << potential unless move_into_check?(piece.pos, potential)
+        end
+      end
+    end
+
+    valid_moves.empty?
   end
 
   def dup
@@ -167,8 +174,6 @@ end
 class MoveIntoCheckError < StandardError
 end
 
-
-
 board = Board.populated_board
 
 #in_check?(color) test!
@@ -179,6 +184,7 @@ board.display_grid
 puts board.in_check?(:white)
 board.move([0,3], [4,7])
 puts board.in_check?(:white)
-puts board.move_into_check?([6,5], [5,5])
+board.move([6,5], [5,5])
+puts board.checkmate?(:white)
 
 board.display_grid
