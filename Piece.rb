@@ -49,4 +49,8 @@ class Piece
   def inside_board?(pos)
     pos.all? { |coord| coord.between?(0, 7) }
   end
+
+  def dup(new_board)
+    Piece.new(self.pos, self.color, new_board)
+  end
 end

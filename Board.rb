@@ -78,7 +78,6 @@ class Board
 
   def move(start_pos, end_pos)
     piece = self[start_pos]
-    #byebug
 
     raise InvalidMoveError.new if piece.nil? || !piece.moves.include?(end_pos)
     piece.move(end_pos)
@@ -97,14 +96,10 @@ class Board
     end
   end
 
-
-
-
   def in_check?(color)
     king_pos = find_king(color)
     enemy_moves(color).include?(king_pos)
   end
-
 
   def enemy_moves(color)
     enemy_moves = []
@@ -117,8 +112,18 @@ class Board
     enemy_moves
   end
 
+  def dup
+    dup_board = Board.new
 
+    grid.each_with_index do |row, row_idx|
+      row.each_with_index do |piece, col_idx|
+        pos = [row_idx, col_idx]
+        dup_board[pos] = piece#.dup(dup_board)
+      end
+    end
 
+    dup_board
+  end
 
   def display_grid
     puts
@@ -142,16 +147,23 @@ end
 
 board = Board.populated_board
 
-board.display_grid
-
-board.move([6,5],[5,5])
-board.display_grid
-board.move([1,4],[3,4])
-board.display_grid
-board.move([6,6], [4,6])
-board.display_grid
-puts board.in_check?(:white)
-board.move([0,3], [4,7])
-puts board.in_check?(:white)
+board2 = board.dup
 
 board.display_grid
+board2.display_grid
+
+board2.move([6,5],[5,5])
+
+board.display_grid
+board2.display_grid
+
+# in_check?(color) test!
+# board.move([1,4],[3,4])
+# board.display_grid
+# board.move([6,6], [4,6])
+# board.display_grid
+# puts board.in_check?(:white)
+# board.move([0,3], [4,7])
+# puts board.in_check?(:white)
+#
+# board.display_grid
