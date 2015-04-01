@@ -25,13 +25,13 @@ class Game
     active_player = (player1.color == :white ? player1 : player2)
     turn_no = 1
 
-    puts "White goes first"
+    puts "White goes first."
 
     until board.checkmate?(:white) || board.checkmate?(:black)
       puts "Turn number: #{turn_no}"
-      puts "Active player: #{active_player.color}"
+      puts "Active player: #{active_player.color.capitalize}"
       if board.in_check?(active_player.color)
-        puts "#{active_player.color} in check!"
+        puts "#{active_player.color.capitalize} in check!"
       end
 
       board.display_grid
@@ -55,7 +55,7 @@ class Game
     end
 
     winner = (active_player == player1 ? player2 : player1)
-    puts "#{winner.color.to_s.capitalize} wins!"
+    puts "#{winner.color.capitalize} wins!"
   end
 end
 

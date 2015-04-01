@@ -6,10 +6,6 @@ require 'byebug'
 class HumanPlayer
   attr_accessor :color
 
-  # def initialize
-  #
-  # end
-
   def select_color
     choice = ''
     while true
@@ -25,41 +21,35 @@ class HumanPlayer
     @color = color
   end
 
+  def select_move(prompt)
+    begin
+      puts prompt
+      pos = gets.chomp.split(",").map(&:to_i)
+    rescue
+      puts "Invalid position. Try again."
+      retry
+    end
+
+    pos
+  end
+
   def take_turn
     while true
-      begin
+      pos = select_move("Please select a piece: row,col")
 
-        puts "Please select a piece: row,col"
-        pos = gets.chomp.split(",").map(&:to_i)
-        start_pos = pos[0] - 1, pos[1] - 1
+      move = select_move("Where would you like to move?")
 
-      rescue
-        puts "Invalid position. Try again."
-        retry
-      end
+      puts "You've selected #{pos} to #{move}, is that correct? Press 'r' to retry."
 
-      puts "You've selected a #{pos}, is that correct? Press 'r' to retry"
-      r = gets.chomp.downcase
-      next if r == 'r'
-
-      begin
-        puts "Where would you like to move?"
-        move = gets.chomp.split(",").map(&:to_i)
-        end_pos = move[0] - 1, move[1] - 1
-
-      rescue
-        puts "Invalid position. Try again."
-        retry
-      end
-
-      puts "You've selected a #{move}, is that correct? Press 'r' to retry"
       r2 = gets.chomp.downcase
       next if r2 == 'r'
 
       break
-
     end
 
-    [start_pos, end_pos]
+    pos = pos[0] - 1, pos[1] - 1
+    move = move[0] - 1, move[1] - 1
+    
+    [pos, move]
   end
 end
