@@ -76,10 +76,11 @@ class Board
     grid[row][col] = piece
   end
 
-  def move(start_pos, end_pos)
+  def move(start_pos, end_pos, color)
     piece = self[start_pos]
 
-    raise InvalidMoveError.new if piece.nil? || !piece.moves.include?(end_pos)
+    raise InvalidMoveError.new if piece.nil? ||
+      !piece.moves.include?(end_pos) || piece.color != color
 
     piece.move(end_pos)
     self[start_pos] = nil
@@ -89,7 +90,7 @@ class Board
   def move_into_check?(start_pos, end_pos)
     piece = self[start_pos]
     dup_board = dup
-    dup_board.move(start_pos, end_pos)
+    dup_board.move(start_pos, end_pos, piece.color)
     dup_board.in_check?(piece.color)
 
   end
@@ -153,8 +154,8 @@ class Board
   end
 
   def display_grid
-    puts
-    grid.each do |row|
+    puts "    #{[1,2,3,4,5,6,7,8].join(' ')}"
+    grid.each_with_index do |row, idx|
       temp_row = []
       row.each do |space|
         if space.nil?
@@ -163,7 +164,7 @@ class Board
           temp_row << space.symbol
         end
       end
-      puts temp_row.join(' ')
+      puts " #{idx + 1}: #{temp_row.join(' ')}"
     end
   end
 end
@@ -177,14 +178,14 @@ end
 board = Board.populated_board
 
 #in_check?(color) test!
-board.move([1,4],[3,4])
-board.display_grid
-board.move([6,6], [4,6])
-board.display_grid
-puts board.in_check?(:white)
-board.move([0,3], [4,7])
-puts board.in_check?(:white)
-board.move([6,5], [5,5])
-puts board.checkmate?(:white)
-
-board.display_grid
+# board.move([1,4],[3,4])
+# board.display_grid
+# board.move([6,6], [4,6])
+# board.display_grid
+# puts board.in_check?(:white)
+# board.move([0,3], [4,7])
+# puts board.in_check?(:white)
+# board.move([6,5], [5,5])
+# puts board.checkmate?(:white)
+#
+# board.display_grid

@@ -18,8 +18,7 @@ class SlidingPiece < Piece
             blocked[idx] = true
             next if same_color?(board[temp_move])
           end
-
-          
+    
           moves << temp_move
         end
       end
