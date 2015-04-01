@@ -14,6 +14,7 @@ class SteppingPiece < Piece
           next if same_color?(board[temp_move])
         end
 
+      
         moves << temp_move
       end
     end

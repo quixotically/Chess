@@ -39,9 +39,11 @@ class Pawn < Piece
         if occupied?(temp_move)
           next if same_color?(board[temp_move])
 
+
           moves << temp_move unless dy == 0 ### if dy != 0 then piece is moving diagonally
           next
         end
+
         moves << temp_move if dy == 0 ### if dy not 0 then the move is diagonal and illegal
       end
     end

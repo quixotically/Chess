@@ -80,11 +80,30 @@ class Board
     piece = self[start_pos]
 
     raise InvalidMoveError.new if piece.nil? || !piece.moves.include?(end_pos)
-    piece.move(end_pos)
 
+    piece.move(end_pos)
     self[start_pos] = nil
     self[end_pos] = piece
   end
+
+  def move_into_check?(start_pos, end_pos)
+    piece = self[start_pos]
+    dup_board = dup
+    dup_board.move(start_pos, end_pos)
+    dup_board.in_check?(piece.color)
+
+  end
+
+
+  # def move!(start_pos, end_pos)
+  #   piece = self[start_pos]
+  #
+  #   #raise MoveIntoCheckError.new if piece.move_into_check?
+  #
+  #   piece.move(end_pos)
+  #   self[start_pos] = nil
+  #   self[end_pos] = piece
+  # end
 
   def find_king(color)
     grid.each_with_index do |row, row_idx|
@@ -143,28 +162,23 @@ class Board
 end
 
 class InvalidMoveError < StandardError
-
 end
+
+class MoveIntoCheckError < StandardError
+end
+
+
 
 board = Board.populated_board
 
-board2 = board.dup
+#in_check?(color) test!
+board.move([1,4],[3,4])
+board.display_grid
+board.move([6,6], [4,6])
+board.display_grid
+puts board.in_check?(:white)
+board.move([0,3], [4,7])
+puts board.in_check?(:white)
+puts board.move_into_check?([6,5], [5,5])
 
 board.display_grid
-board2.display_grid
-
-board2.move([6,5],[5,5])
-
-board.display_grid
-board2.display_grid
-
-# in_check?(color) test!
-# board.move([1,4],[3,4])
-# board.display_grid
-# board.move([6,6], [4,6])
-# board.display_grid
-# puts board.in_check?(:white)
-# board.move([0,3], [4,7])
-# puts board.in_check?(:white)
-#
-# board.display_grid
