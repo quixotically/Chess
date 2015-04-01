@@ -51,6 +51,6 @@ class Piece
   end
 
   def dup(new_board)
-    Piece.new(self.pos, self.color, new_board)
+    self.class.new(self.pos, self.color, new_board)
   end
 end

@@ -118,7 +118,8 @@ class Board
     grid.each_with_index do |row, row_idx|
       row.each_with_index do |piece, col_idx|
         pos = [row_idx, col_idx]
-        dup_board[pos] = piece#.dup(dup_board)
+        next if piece.nil?
+        dup_board[pos] = piece.dup(dup_board)
       end
     end
 
