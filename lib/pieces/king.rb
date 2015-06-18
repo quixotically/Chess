@@ -6,8 +6,8 @@ require_relative "stepping_piece"
 class King < SteppingPiece
   def initialize(pos, color, board)
     super(pos, color, board)
-    @symbol = '♚' if color == :black
-    @symbol = '♔' if color == :white
+    @symbol = ' ♚ ' if color == :black
+    @symbol = ' ♔ ' if color == :white
   end
 
   def move_dirs

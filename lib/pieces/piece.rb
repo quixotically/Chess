@@ -25,7 +25,6 @@ class Piece
 
   def inspect
     @symbol.inspect
-
   end
 
   def moves

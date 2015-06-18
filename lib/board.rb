@@ -144,17 +144,25 @@ class Board
   end
 
   def display_grid
-    puts "    #{[1,2,3,4,5,6,7,8].join(' ')}"
-    grid.each_with_index do |row, idx|
+    puts "     #{[1,2,3,4,5,6,7,8].join('  ')}"
+    grid.each_with_index do |row, idx1|
       temp_row = []
-      row.each do |space|
+      row.each_with_index do |space, idx2|
         if space.nil?
-          temp_row << '-'
+          temp_row << determine_background('   ', idx1, idx2)
         else
-          temp_row << space.symbol
+          temp_row << determine_background(space.symbol, idx1, idx2)
         end
       end
-      puts " #{idx + 1}: #{temp_row.join(' ')}"
+      puts " #{idx1 + 1}: #{temp_row.join('')}"
+    end
+  end
+
+  def determine_background(symbol, idx1, idx2)
+    if ((idx1.even? && idx2.even?) || (idx1.odd? && idx2.odd?))
+      symbol.on_light_cyan
+    else
+      symbol.on_light_white
     end
   end
 end

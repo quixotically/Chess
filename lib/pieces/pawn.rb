@@ -16,8 +16,8 @@ class Pawn < Piece
   def initialize(pos, color, board)
     super(pos, color, board)
     @has_moved = false
-    @symbol = '♟' if color == :black
-    @symbol = '♙' if color == :white
+    @symbol = ' ♟ ' if color == :black
+    @symbol = ' ♙ ' if color == :white
   end
 
   def has_moved?
