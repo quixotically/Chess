@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require_relative 'Sliding_Piece'
+require_relative 'sliding_piece'
 
 class Queen < SlidingPiece
   def initialize(pos, color, board)
@@ -13,7 +13,3 @@ class Queen < SlidingPiece
     DIAGONAL_DELTAS + HORIZONTAL_DELTAS + VERTICAL_DELTAS
   end
 end
-
-# q = Queen.new([0,0], "board")
-#
-# p q.moves

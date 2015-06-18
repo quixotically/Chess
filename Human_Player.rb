@@ -1,8 +1,5 @@
 # encoding: utf-8
 
-require 'colorize'
-require 'byebug'
-
 class HumanPlayer
   attr_accessor :color
 
@@ -49,7 +46,7 @@ class HumanPlayer
 
     pos = pos[0] - 1, pos[1] - 1
     move = move[0] - 1, move[1] - 1
-    
+
     [pos, move]
   end
 end

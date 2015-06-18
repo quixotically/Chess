@@ -1,8 +1,6 @@
 # encoding: utf-8
-require_relative 'Board'
-require_relative 'Human_Player'
-require 'colorize'
-require 'byebug'
+require_relative 'board'
+require_relative 'human_player'
 
 class Game
   attr_accessor :board, :player1, :player2

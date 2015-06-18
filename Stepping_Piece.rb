@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require_relative 'Piece'
+require_relative 'piece'
 
 class SteppingPiece < Piece
   def moves
@@ -14,7 +14,7 @@ class SteppingPiece < Piece
           next if same_color?(board[temp_move])
         end
 
-      
+
         moves << temp_move
       end
     end

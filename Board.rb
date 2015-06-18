@@ -1,16 +1,14 @@
 # encoding: utf-8
 
-require_relative 'Piece'
-require_relative 'Sliding_Piece'
-require_relative 'Stepping_Piece'
-require_relative 'Queen'
-require_relative 'King'
-require_relative 'Bishop'
-require_relative 'Knight'
-require_relative 'Rook'
-require_relative 'Pawn'
-require 'colorize'
-require 'byebug'
+require_relative 'piece'
+require_relative 'sliding_piece'
+require_relative 'stepping_piece'
+require_relative 'queen'
+require_relative 'king'
+require_relative 'bishop'
+require_relative 'knight'
+require_relative 'rook'
+require_relative 'pawn'
 
 class Board
   attr_accessor :grid

@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require_relative "Sliding_Piece"
+require_relative "sliding_piece"
 
 
 class Rook < SlidingPiece
@@ -15,8 +15,3 @@ class Rook < SlidingPiece
   end
 
 end
-
-#
-# r = Rook.new([0,0], "rook")
-#
-# p r.moves

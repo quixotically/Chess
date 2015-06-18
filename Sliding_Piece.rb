@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require_relative 'Piece'
+require_relative 'piece'
 
 class SlidingPiece < Piece
   def moves
@@ -18,7 +18,7 @@ class SlidingPiece < Piece
             blocked[idx] = true
             next if same_color?(board[temp_move])
           end
-    
+
           moves << temp_move
         end
       end

@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require_relative 'Stepping_Piece'
+require_relative 'stepping_piece'
 
 class Knight < SteppingPiece
   def initialize(pos, color, board)

@@ -1,7 +1,6 @@
 # encoding: utf-8
 
-require_relative 'Piece'
-
+require_relative 'piece'
 
 
 class Pawn < Piece
