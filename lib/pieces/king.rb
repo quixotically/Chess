@@ -14,9 +14,3 @@ class King < SteppingPiece
     DIAGONAL_DELTAS + HORIZONTAL_DELTAS + VERTICAL_DELTAS
   end
 end
-
-
-#
-# k = King.new([3,3], "board")
-#
-# p k.moves

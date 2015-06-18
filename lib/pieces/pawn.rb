@@ -9,8 +9,6 @@ class Pawn < Piece
     first_white: [[-2,0], [-1,0], [-1, 1], [-1, -1]],
     black: [[1, 0], [1, -1], [1, 1]],
     white: [[-1,0], [-1, 1], [-1, -1]]
-    # white_attack: [[-1, 1], [-1, -1]]
-    # black_attack:  [[1, -1], [1, 1]]
   }
 
   def initialize(pos, color, board)
@@ -39,11 +37,11 @@ class Pawn < Piece
           next if same_color?(board[temp_move])
 
 
-          moves << temp_move unless dy == 0 ### if dy != 0 then piece is moving diagonally
+          moves << temp_move unless dy == 0 # if dy != 0 then piece is moving diagonally
           next
         end
 
-        moves << temp_move if dy == 0 ### if dy not 0 then the move is diagonal and illegal
+        moves << temp_move if dy == 0 # if dy not 0 then the move is diagonal and illegal
       end
     end
 
