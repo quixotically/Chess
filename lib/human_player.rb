@@ -40,9 +40,10 @@ class HumanPlayer
 
       move = select_move("Where would you like to move?")
 
-      puts "You've selected #{pos} to #{move}, is that correct? Press 'r' to retry."
+      puts "You've selected #{pos} to #{move}, is that correct? Press 'r' to retry, or 'e' to give up"
 
       r2 = gets.chomp.downcase
+      abort("#{self.color.capitalize} surrenders!") if r2 == 'e'
       next if r2 == 'r'
 
       break
