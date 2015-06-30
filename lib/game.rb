@@ -4,7 +4,7 @@ require_relative 'board'
 require_relative 'human_player'
 
 class Game
-  attr_accessor :board, :player1, :player2, :turn_num
+  attr_accessor :board, :player1, :player2, :turn_num, :active_player
 
   def initialize(board = nil, num_players)
     @turn_num = 1
@@ -26,29 +26,17 @@ class Game
 
   def play
     self.set_player_colors
-    active_player = (player1.color == :white ? player1 : player2)
+    @active_player = (player1.color == :white ? player1 : player2)
 
     puts "White goes first."
 
     until board.checkmate?(:white) || board.checkmate?(:black)
-      self.turn_status(active_player)
+      self.turn_status
       board.display_grid
 
-      begin
-        start_pos, end_pos = active_player.take_turn
-        if board.move_into_check?(start_pos, end_pos)
-          puts "Can't move into check"
-          next
-        end
+      next unless self.try_move
 
-        board.move(start_pos, end_pos, active_player.color)
-
-      rescue
-        puts "Invalid move. Try again."
-        retry
-      end
-
-      active_player = (active_player == player1 ? player2 : player1)
+      @active_player = (active_player == player1 ? player2 : player1)
       @turn_num += 1
     end
 
@@ -65,11 +53,27 @@ class Game
     player1.color == :white ? player2.set_color(:black) : player2.set_color(:white)
   end
 
-  def turn_status(active_player)
+  def turn_status
     puts "Turn number: #{turn_num}"
     puts "Active player: #{active_player.color.capitalize}"
     if board.in_check?(active_player.color)
       puts "#{active_player.color.capitalize} in check!"
+    end
+  end
+
+  def try_move
+    begin
+      start_pos, end_pos = active_player.take_turn
+      if board.move_into_check?(start_pos, end_pos)
+        puts "Can't move into check"
+        return false
+      end
+
+      board.move(start_pos, end_pos, active_player.color)
+      true
+    rescue
+      puts "Invalid move. Try again."
+      retry
     end
   end
 end
