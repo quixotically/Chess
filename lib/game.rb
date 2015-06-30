@@ -6,15 +6,20 @@ require_relative 'human_player'
 class Game
   attr_accessor :board, :player1, :player2
 
-  def initialize(board = nil, player1, player2)
+  def initialize(board = nil, num_players)
     if board.nil?
       @board = Board.populated_board
     else
       # YAML!
     end
 
-    @player1 = player1
-    @player2 = player2
+    if num_players == 2
+      @player1 = HumanPlayer.new(@board)
+      @player2 = HumanPlayer.new(@board)
+    else
+      @player1 = HumanPlayer.new(@board)
+      @player2 = ComputerPlayer.new(@board)
+    end
   end
 
   def play
@@ -58,8 +63,5 @@ class Game
   end
 end
 
-p1 = HumanPlayer.new
-p2 = HumanPlayer.new
-
-g = Game.new( p1, p2 )
+g = Game.new(2)
 g.play

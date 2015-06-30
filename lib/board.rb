@@ -173,8 +173,7 @@ end
 class MoveIntoCheckError < StandardError
 end
 
-board = Board.populated_board
-
+# board = Board.populated_board
 #in_check?(color) test!
 # board.move([1,4],[3,4])
 # board.display_grid

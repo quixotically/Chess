@@ -1,7 +1,11 @@
 # encoding: utf-8
 
 class HumanPlayer
-  attr_accessor :color
+  attr_accessor :color, :board
+
+  def initialize(board)
+    @board = board
+  end
 
   def select_color
     choice = ''
