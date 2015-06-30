@@ -90,7 +90,9 @@ class Game
   end
 end
 
-g = Game.new(1)
+puts "How many players?"
+num_players = gets.chomp.to_i
+g = Game.new(num_players)
 g.play
 
 # checkmate

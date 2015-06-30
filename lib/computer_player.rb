@@ -1,36 +1,40 @@
 # encoding: utf-8
 
 class ComputerPlayer
-  attr_accessor :color, :board
+  attr_accessor :color, :board, :opponent_color
 
-  def initialize(board, color)
+  def initialize(board)
     @board = board
   end
 
   def set_color(color)
     @color = color
+    @opponent_color = color == :white ? :black : :white
   end
 
-  def select_move(prompt)
-    board.enemy_moves(player1.color).sample
+  def select_move(piece)
+    piece.moves.sample
+  end
+
+  def select_piece
+    pieces = []
+
+    @board.grid.each_with_index do |row, row_idx|
+      row.each_with_index do |piece, col_idx|
+        next if piece.nil? || piece.color == opponent_color
+        pieces << [row_idx, col_idx]
+      end
+    end
+
+    pieces.sample
   end
 
   def take_turn
     while true
-      pos = select_move("Please select a piece: row,col")
-
-      move = select_move("Where would you like to move?")
-
-      # puts "You've selected #{pos} to #{move}, is that correct? Press 'r' to retry."
-      #
-      # r2 = gets.chomp.downcase
-      # next if r2 == 'r'
-
+      pos = select_piece
+      move = select_move(board[pos])
       break
     end
-
-    pos = pos[0] - 1, pos[1] - 1
-    move = move[0] - 1, move[1] - 1
 
     [pos, move]
   end
