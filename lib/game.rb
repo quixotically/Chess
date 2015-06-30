@@ -2,6 +2,7 @@
 require 'colorize'
 require_relative 'board'
 require_relative 'human_player'
+require_relative 'computer_player'
 
 class Game
   attr_accessor :board, :player1, :player2, :turn_num, :active_player
@@ -89,7 +90,7 @@ class Game
   end
 end
 
-g = Game.new(2)
+g = Game.new(1)
 g.play
 
 # checkmate
