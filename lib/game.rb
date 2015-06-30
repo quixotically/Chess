@@ -23,20 +23,21 @@ class Game
   end
 
   def play
-    player1.select_color
-    player1.color == :white ? player2.set_color(:black) : player2.set_color(:white)
-
+    self.set_player_colors
     active_player = (player1.color == :white ? player1 : player2)
     turn_no = 1
 
     puts "White goes first."
 
     until board.checkmate?(:white) || board.checkmate?(:black)
+      # play_turn turn_no ||= 1
+      # turn_msg
       puts "Turn number: #{turn_no}"
       puts "Active player: #{active_player.color.capitalize}"
       if board.in_check?(active_player.color)
         puts "#{active_player.color.capitalize} in check!"
       end
+      # turn_msg end
 
       board.display_grid
 
@@ -60,6 +61,12 @@ class Game
 
     winner = (active_player == player1 ? player2 : player1)
     puts "#{winner.color.capitalize} wins!"
+    # play_turn end
+  end
+
+  def set_player_colors
+    player1.select_color
+    player1.color == :white ? player2.set_color(:black) : player2.set_color(:white)
   end
 end
 
