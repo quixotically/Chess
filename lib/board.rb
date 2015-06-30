@@ -172,17 +172,3 @@ end
 
 class MoveIntoCheckError < StandardError
 end
-
-# board = Board.populated_board
-#in_check?(color) test!
-# board.move([1,4],[3,4])
-# board.display_grid
-# board.move([6,6], [4,6])
-# board.display_grid
-# puts board.in_check?(:white)
-# board.move([0,3], [4,7])
-# puts board.in_check?(:white)
-# board.move([6,5], [5,5])
-# puts board.checkmate?(:white)
-#
-# board.display_grid

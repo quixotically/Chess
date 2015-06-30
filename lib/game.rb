@@ -27,25 +27,20 @@ class Game
   def play
     self.set_player_colors
     @active_player = (player1.color == :white ? player1 : player2)
-
     puts "White goes first."
 
-    until board.checkmate?(:white) || board.checkmate?(:black)
-      self.turn_status
-      board.display_grid
+    self.play_turn until board.checkmate?(:white) || board.checkmate?(:black)
 
-      next unless self.try_move
-
-      @active_player = (active_player == player1 ? player2 : player1)
-      @turn_num += 1
-    end
-
-    winner = (active_player == player1 ? player2 : player1)
-    puts "#{winner.color.capitalize} wins!"
+    self.display_winner
   end
 
   def play_turn
+    self.display_turn_status
 
+    self.try_move
+
+    self.switch_active_player
+    @turn_num += 1
   end
 
   def set_player_colors
@@ -53,30 +48,52 @@ class Game
     player1.color == :white ? player2.set_color(:black) : player2.set_color(:white)
   end
 
-  def turn_status
+  def display_turn_status
     puts "Turn number: #{turn_num}"
     puts "Active player: #{active_player.color.capitalize}"
     if board.in_check?(active_player.color)
       puts "#{active_player.color.capitalize} in check!"
     end
+
+    board.display_grid
   end
 
   def try_move
     begin
       start_pos, end_pos = active_player.take_turn
       if board.move_into_check?(start_pos, end_pos)
-        puts "Can't move into check"
-        return false
+        raise MoveIntoCheckError
       end
 
       board.move(start_pos, end_pos, active_player.color)
-      true
+    rescue MoveIntoCheckError
+      puts "Can't move into check"
+      retry
+    rescue InvalidMoveError
+      puts "Invalid move. Try again."
+      retry
     rescue
       puts "Invalid move. Try again."
       retry
     end
   end
+
+  def display_winner
+    board.display_grid
+    winner = (active_player == player1 ? player2 : player1)
+    puts "#{winner.color.capitalize} wins!"
+  end
+
+  def switch_active_player
+    @active_player = (active_player == player1 ? player2 : player1)
+  end
 end
 
 g = Game.new(2)
 g.play
+
+# checkmate
+# 7,6 => 5,6
+# 2,5 => 4,5
+# 7,7 => 5,7
+# 1,4 => 5,8
